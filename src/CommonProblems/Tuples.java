@@ -6,7 +6,8 @@ import java.util.Map;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ArrayManipulations {
+public class Tuples {
+    Map<Integer, ArrayList<Integer>> map;
     private List<Integer> arrayX, arrayY, arrayZ;
 
     /**
@@ -18,7 +19,7 @@ public class ArrayManipulations {
      * @param arrayY - array Y of integers
      * @param arrayZ - array Z of integers
      */
-    public ArrayManipulations(int[] arrayX, int[] arrayY, int[] arrayZ) {
+    public Tuples(int[] arrayX, int[] arrayY, int[] arrayZ) {
         this.arrayX = new ArrayList<>();
         for (int x : arrayX) {
             this.arrayX.add(x);
@@ -31,6 +32,7 @@ public class ArrayManipulations {
         for (int z : arrayZ) {
             this.arrayZ.add(z);
         }
+        map = new HashMap<>();
     }
 
     /**
@@ -40,10 +42,11 @@ public class ArrayManipulations {
      * @param arrayY - ArrayList Y of integers
      * @param arrayZ - ArrayList Z of integers
      */
-    public ArrayManipulations(ArrayList<Integer> arrayX, ArrayList<Integer> arrayY, ArrayList<Integer> arrayZ) {
+    public Tuples(ArrayList<Integer> arrayX, ArrayList<Integer> arrayY, ArrayList<Integer> arrayZ) {
         this.arrayX = arrayX;
         this.arrayY = arrayY;
         this.arrayZ = arrayZ;
+        map = new HashMap<>();
     }
 
     /**
@@ -60,7 +63,6 @@ public class ArrayManipulations {
             removeDuplicates();
 
             // Store all x's elements of arrayX into HashMap<x -> [y1, y2, y3, ...]>
-            Map<Integer, ArrayList<Integer>> map = new HashMap<>();
             for (Integer x : arrayX) {
                 map.put(x, new ArrayList<>());
             }
