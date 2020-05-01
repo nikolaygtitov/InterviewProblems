@@ -1,57 +1,57 @@
 package Heaps;
 
 /**
- * A max-heap is a complete binary tree in which the value in each internal node is greater than or equal to the values
+ * A Min-Heap is a complete binary tree in which the value in each internal node is smaller than or equal to the values
  * in the children of that node.
- *
  * Mapping the elements of a heap into an array is trivial: if a node is stored a index k, then its left child is stored
- * at index 2k+1 and its right child at index 2k+2.
+ * at index 2k + 1 and its right child at index 2k + 2.
  *
- * How is Max Heap represented?
- * A Max Heap is a Complete Binary Tree. A Max heap is typically represented as an array. The root element will be at
- * Arr[0]. Below table shows indexes of other nodes for the ith node, i.e., Arr[i]:
+ * How is Min Heap represented?
+ * A Min Heap is a Complete Binary Tree. A Min heap is typically represented as an array.
+ * The root element will be at Arr[0]. For any ith node, i.e., Arr[i]:
  *
  * Arr[(i -1) / 2] returns its parent node.
  * Arr[(2 * i) + 1] returns its left child node.
  * Arr[(2 * i) + 2] returns its right child node.
  *
- * Operations on Max Heap:
- * 1) getMax(): It returns the root element of Max Heap. Time Complexity of this operation is O(1).
+ * Operations on Min Heap:
+ * getMin(): It returns the root element of Min Heap. Time Complexity of this operation is O(1).
  *
- * 2) extractMax(): Removes the maximum element from MaxHeap. Time Complexity of this Operation is O(Log n) as this
+ * extractMin(): Removes the minimum element from MinHeap. Time Complexity of this Operation is O(Log n) as this
  * operation needs to maintain the heap property (by calling heapify()) after removing root.
  *
- * 4) insert(): Inserting a new key takes O(Log n) time. We add a new key at the end of the tree. If new key is smaller
+ * insert(): Inserting a new key takes O(Log n) time. We add a new key at the end of the tree. If new key is larger
  * than its parent, then we don’t need to do anything. Otherwise, we need to traverse up to fix the violated heap
  * property.
  */
-
-public class MaxHeapImplementation {
-    final private int[] heap;
+public class BinaryMinHeapImplementation {
+    final int[] heap;
     private int size;
     private final int maxSize;
 
-    public MaxHeapImplementation(int maxSize) {
+    private static final int FRONT = 1;
+
+    public BinaryMinHeapImplementation(int maxSize) {
         this.maxSize = maxSize;
         this.size = 0;
-        this.heap = new int[maxSize + 1];
-        this.heap[0] = Integer.MAX_VALUE;
+        heap = new int[this.maxSize + 1];
+        heap[0] = Integer.MIN_VALUE;
     }
 
     /**
-     * Inserts new node into MaxHeap
+     * Inserts new node into MinHeap
      */
     public void insert(int value) {
         try {
             heap[++size] = value;
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Error: Maximum size of the MaxHeap is reached! Can not insert any more!");
+            System.out.println("Error: Maximum size of the MinHeap is reached! Can not insert any more!");
             return;
         }
 
         // Traverse up and fix violated property
         int currentPosition = size;
-        while(heap[currentPosition] > heap[parentPosition(currentPosition)]) {
+        while(heap[currentPosition] < heap[parentPosition(currentPosition)]) {
             swap(currentPosition, parentPosition(currentPosition));
             currentPosition = parentPosition(currentPosition);
         }
@@ -84,32 +84,32 @@ public class MaxHeapImplementation {
     }
 
     /**
-     * Extracts maximum node-value.
-     * @return maximum value of the MaxHeap
+     * Extracts minimum node-value.
+     * @return maximum value of the MinHeap
      */
-    public int extractMax() {
-        int popped = heap[1];
-        heap[1] = heap[size--];
-        maxHeapify(1);
+    public int extractMin() {
+        int popped = heap[FRONT];
+        heap[FRONT] = heap[size--];
+        minHeapify(FRONT);
         return popped;
     }
 
     /**
-     * A recursive function to max heapify the given subtree. This function assumes that the left and right subtrees
+     * A recursive function to minHeapify the given subtree. This function assumes that the left and right subtrees
      * are already heapified, we only need to fix the root.
      * @param position - position to start from to heapify
      */
-    private void maxHeapify(int position) {
+    private void minHeapify(int position) {
         if (isLeaf(position)) {
             return;
         }
-        if (heap[position] < heap[leftChild(position)] || heap[position] < heap[rightChild(position)]) {
+        if (heap[position] > heap[leftChild(position)] || heap[position] > heap[rightChild(position)]) {
             if (heap[leftChild(position)] < heap[rightChild(position)]) {
-                swap(position, rightChild(position));
-                maxHeapify(rightChild(position));
-            } else {
                 swap(position, leftChild(position));
-                maxHeapify(leftChild(position));
+                minHeapify(leftChild(position));
+            } else {
+                swap(position, rightChild(position));
+                minHeapify(rightChild(position));
             }
         }
     }

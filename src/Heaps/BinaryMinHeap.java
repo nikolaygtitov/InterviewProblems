@@ -8,10 +8,10 @@ import java.util.PriorityQueue;
  * program to demonstrate working of PriorityQueue a Max Heap
  */
 
-public class MinHeap {
+public class BinaryMinHeap {
     final private PriorityQueue<Integer> priorityQueue;
 
-    public MinHeap() {
+    public BinaryMinHeap() {
         this.priorityQueue = new PriorityQueue<>();
     }
 

@@ -8,10 +8,10 @@ import java.util.PriorityQueue;
  * To implement Max Heap, we use Collections.reverseOrder()
  * program to demonstrate working of PriorityQueue a Max Heap
  */
-public class MaxHeap {
+public class BinaryMaxHeap {
     final private PriorityQueue<Integer> priorityQueue;
 
-    public MaxHeap() {
+    public BinaryMaxHeap() {
         this.priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
     }
 
