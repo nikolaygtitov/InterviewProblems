@@ -7,11 +7,11 @@ import java.util.*;
  * nodes as keys and their adjancency list in values in the graph.
  * @param <T>
  */
-public class GraphImplementation<T> {
+public class Graph<T> {
     private Map<T, List<T>> map;
     private boolean bidirectional;
 
-    public GraphImplementation(boolean bidirectional) {
+    public Graph(boolean bidirectional) {
         map = new HashMap<>();
         this.bidirectional = bidirectional;
     }
@@ -45,8 +45,11 @@ public class GraphImplementation<T> {
         System.out.println("Graph has " + (bidirectional ? count / 2 : count) + " edges!");
     }
 
-    public void hasVertex(int vertex) {
-            System.out.println("Graph does " + (map.containsKey(vertex) ? "" : "NOT") + " have vertex " + vertex);
+    public boolean hasVertex(int vertex) {
+        if (map.containsKey(vertex)) {
+            return true;
+        }
+        return false;
     }
 
     public void hasEdge(int firstVertex, int secondVertex) {
@@ -62,6 +65,11 @@ public class GraphImplementation<T> {
             System.out.println("Graph does NOT have the edge " + firstVertex + " <-> " + secondVertex);
         }
     }
+
+    public List<T> getAdjacentVertexes(int vertex) {
+        return map.get(vertex);
+    }
+
 
     @Override
     public String toString() {

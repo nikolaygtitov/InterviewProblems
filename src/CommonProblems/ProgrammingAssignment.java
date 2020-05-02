@@ -5,7 +5,9 @@ public class ProgrammingAssignment {
         // doTuples();
         // doFibonacci();
         // doFIndLeafs();
-        doTwoSum();
+        // doTwoSum();
+        // doLinkedListInReverse();
+        doLongestSubstringWithoutRepeatingCharacter();
     }
 
     private static void doTuples() {
@@ -30,5 +32,15 @@ public class ProgrammingAssignment {
     private static void doTwoSum() {
         TwoSum twoSum = new TwoSum();
         twoSum.printTwoIndexes();
+    }
+
+    private static void doLinkedListInReverse() {
+        LinkedListInReverse linkedListInReverse = new LinkedListInReverse();
+        linkedListInReverse.addTwoLists();
+    }
+
+    private static void doLongestSubstringWithoutRepeatingCharacter() {
+        LongestSubstring longestSubstring = new LongestSubstring();
+        longestSubstring.findLongestSubstringWithoutRepeatingCharacter();
     }
 }
