@@ -6,17 +6,17 @@ public class TestBinaryTree {
     public static void main (String args[]) {
         // ArrayList<Integer> arrayList = buildArrayList();
         BinaryTree binaryTree = new BinaryTree();
-        DepthFistSearch depthFistSearch = new DepthFistSearch(binaryTree);
-        BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(binaryTree);
+        // DepthFistSearch depthFistSearch = new DepthFistSearch(binaryTree);
+        // BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(binaryTree);
         buildInGivenOrder(binaryTree);
         // binaryTree.insertFromListKeepingStructure(arrayList);
         // buildBinaryTree(binaryTree);
-        // binaryTree.printAverageOfEachLevel();
+        binaryTree.printHeight();
         // depthFistSearch.depthFistSearchPrint();
-        breadthFirstSearch.breadthFirstSearchPrint();
+        // breadthFirstSearch.breadthFirstSearchPrint();
         // depthFistSearch.backwardDepthFistSearchPrint();
-        breadthFirstSearch.insertAtFirstAvailableSpot(8);
-        breadthFirstSearch.breadthFirstSearchPrint();
+        // breadthFirstSearch.insertAtFirstAvailableSpot(8);
+        // breadthFirstSearch.breadthFirstSearchPrint();
     }
 
     private static void buildInGivenOrder(BinaryTree binaryTree) {
@@ -28,11 +28,23 @@ public class TestBinaryTree {
         node.leftChild.leftChild = new Node(10);
         node.leftChild.rightChild = new Node(2);
 
-        node.rightChild.rightChild = new Node(6);
+        node.rightChild.rightChild = new Node(8);
 
         node.leftChild.rightChild.rightChild = new Node(6);
 
         node.leftChild.rightChild.rightChild.leftChild = new Node(2);
+
+        /**
+         *                   4
+         *                 /   \
+         *                7    9
+         *              /  \     \
+         *             10   2     8
+         *                   \
+         *                    6
+         *                   /
+         *                  2
+         */
 
     }
 

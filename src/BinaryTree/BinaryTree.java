@@ -40,10 +40,11 @@ public class BinaryTree {
         int leftDepth = findMaxDepth(node.leftChild);
         int rightDepth = findMaxDepth(node.rightChild);
 
-        if (leftDepth < rightDepth) {
-           return rightDepth + 1;
-        }
-        return leftDepth + 1;
+        return (leftDepth < rightDepth) ? rightDepth + 1 : leftDepth + 1;
+    }
+
+    public void printHeight() {
+        System.out.println(findMaxDepth(root) - 1);
     }
 }
 

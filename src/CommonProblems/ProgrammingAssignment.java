@@ -7,7 +7,10 @@ public class ProgrammingAssignment {
         // doFIndLeafs();
         // doTwoSum();
         // doLinkedListInReverse();
-        doLongestSubstringWithoutRepeatingCharacter();
+        // doLongestSubstringWithoutRepeatingCharacter();
+        // doLongestPalindromicSubstring();
+        // doSpiralIn2DArray();
+        doBalancedBrackets();
     }
 
     private static void doTuples() {
@@ -42,5 +45,19 @@ public class ProgrammingAssignment {
     private static void doLongestSubstringWithoutRepeatingCharacter() {
         LongestSubstring longestSubstring = new LongestSubstring();
         longestSubstring.findLongestSubstringWithoutRepeatingCharacter();
+    }
+
+    private static void doLongestPalindromicSubstring() {
+        LongestPalindromic longestPalindromic = new LongestPalindromic();
+        longestPalindromic.findLongestPalindromicSubstring();
+    }
+
+    private static void doSpiralIn2DArray() {
+        Spiral2DArray spiral2DArray = new Spiral2DArray();
+        spiral2DArray.iterateInSpiral();
+    }
+
+    private static void doBalancedBrackets() {
+        BalancedBrackets balancedBrackets = new BalancedBrackets();
     }
 }

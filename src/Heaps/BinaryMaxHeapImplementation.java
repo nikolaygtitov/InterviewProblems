@@ -120,7 +120,10 @@ public class BinaryMaxHeapImplementation {
      * @return true of false whether node is leaf
      */
     private boolean isLeaf(int position) {
-        if (position >= (size / 2) && position <= size) {
+        if (position == 1 && size == 2) {
+            return false;
+        }
+        if (position >= (int) Math.ceil(size / 2.0) && position <= size) {
             return true;
         }
         return false;
@@ -140,5 +143,9 @@ public class BinaryMaxHeapImplementation {
      */
     private int rightChild(int currentPosition) {
         return 2 * currentPosition + 1;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 }

@@ -2,8 +2,9 @@ package Heaps;
 
 public class HeapsTest {
     public static void main (String []args) {
-        doMaxHeap();
-        doMinHeap();
+        //doMaxHeap();
+        //doMinHeap();
+        doHeapSort();
     }
 
     private static void doMaxHeap() {
@@ -90,5 +91,10 @@ public class HeapsTest {
 
         binaryMinHeap.removeNode(17);
         binaryMinHeap.print();
+    }
+
+    public static void doHeapSort() {
+        HeapSort heapSort = new HeapSort();
+        heapSort.sort();
     }
 }
