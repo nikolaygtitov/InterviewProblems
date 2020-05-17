@@ -10,7 +10,8 @@ public class ProgrammingAssignment {
         // doLongestSubstringWithoutRepeatingCharacter();
         // doLongestPalindromicSubstring();
         // doSpiralIn2DArray();
-        doBalancedBrackets();
+        // doBalancedBrackets();
+        doPartialNames();
     }
 
     private static void doTuples() {
@@ -59,5 +60,10 @@ public class ProgrammingAssignment {
 
     private static void doBalancedBrackets() {
         BalancedBrackets balancedBrackets = new BalancedBrackets();
+    }
+
+    private static void doPartialNames() {
+        PartialNames partialNames = new PartialNames();
+        partialNames.findPartialNames();
     }
 }

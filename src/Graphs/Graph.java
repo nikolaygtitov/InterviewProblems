@@ -1,9 +1,13 @@
 package Graphs;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.LinkedList;
 
 /**
- * he Graph Class is implemented using HashMap in Java. As we know HashMap contains a key and a value, we represent
+ * The Graph Class is implemented using HashMap in Java. As we know HashMap contains a key and a value, we represent
  * nodes as keys and their adjancency list in values in the graph.
  * @param <T>
  */
