@@ -64,6 +64,7 @@ public class ProgrammingAssignment {
 
     private static void doPartialNames() {
         PartialNames partialNames = new PartialNames();
-        partialNames.findPartialNames();
+        partialNames.useTrieFindPartialNames();
+        // partialNames.useHashMapFindPartialNames();
     }
 }

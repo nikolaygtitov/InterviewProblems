@@ -1,6 +1,7 @@
 package CommonProblems;
 
-import GeneralTree.GeneralTree;
+import Trie.Trie;
+import Trie.Node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,77 +10,104 @@ import java.util.HashMap;
 
 public class PartialNames {
     private String[][] input = {
-            {"add", "hack"},
-            {"add", "hackerrank"},
-            {"find", "hac"},
-            {"find", "hak"}
+            //{"add", "hack"},
+            //{"add", "hackerrank"},
+            //{"find", "hac"},
+            //{"find", "hak"},
             //{"find", "ha"}
+            {"add", "s"},
+            {"add", "ss"},
+            {"add", "sss"},
+            {"add", "ssss"},
+            {"add", "sssss"},
+            {"find", "s"},
+            {"find", "ss"},
+            {"find", "sss"},
+            {"find", "ssss"},
+            {"find", "sssss"},
+            {"find", "ssssss"}
     };
-    private Map<Character, GeneralTree> map;
 
-    public PartialNames() {
-        map = new HashMap<>();
-    }
+    public PartialNames() {}
 
-    public void findPartialNames() {
+    public void useTrieFindPartialNames() {
         System.out.println(Arrays.toString(storeResultInArray()));
     }
 
     private int[] storeResultInArray() {
-        ArrayList<String> addList = new ArrayList();
+        Trie trie = new Trie();
+        ArrayList<String> findList = new ArrayList<>();
+
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < input[i].length; j++) {
+                if (input[i][j].equals("add")) {
+                    trie.insert(input[i][++j]);
+                } else if (input[i][j].equals("find")) {
+                    findList.add(input[i][++j]);
+                }
+            }
+        }
+
+        int[] result = new int[findList.size()];
+        int count = 0;
+        Node node;
+
+        for (String findName : findList) {
+            node = trie.getLastNode(findName);
+            if (node == null) {
+                result[count++] = 0;
+            } else {
+                result[count++] = node.numOfChildren;
+            }
+        }
+
+        return result;
+    }
+
+    public void useHashMapFindPartialNames() {
+        System.out.println(Arrays.toString(storeResultInArrayV2()));
+    }
+
+
+    private int[] storeResultInArrayV2() {
+        Map<Character, ArrayList<String>> hashMap= new HashMap<>();
         ArrayList<String> findList = new ArrayList<>();
         int count = 0;
 
         for (int i = 0; i < input.length; i++) {
             for (int j = 0; j < input[i].length; j++) {
                 if (input[i][j].equals("add")) {
-                    addList.add(input[i][++j]);
-                } else if (input[i][j].equals("find")) {
-                    String findString = input[i][++j];
-                    if (map.containsKey(findString.charAt(0))) {
-                        map.get(findString.charAt(0)).insertStringNode(map.get(findString.charAt(0)).root, findString, false);
+                    if (hashMap.containsKey(input[i][j + 1].charAt(0))) {
+                        hashMap.get(input[i][j + 1].charAt(0)).add(input[i][j + 1]);
                     } else {
-                        GeneralTree generalTree = new GeneralTree(findString.charAt(0));
-                        generalTree.insertStringNode(generalTree.root, findString, false);
-                        map.put(findString.charAt(0), generalTree);
+                        ArrayList<String> list = new ArrayList<>();
+                        list.add(input[i][j + 1]);
+                        hashMap.put(input[i][j + 1].charAt(0), list);
                     }
-                    findList.add(findString);
+                } else if (input[i][j].equals("find")) {
+                    findList.add(input[i][j + 1]);
                     count++;
                 }
             }
         }
-
-        for (String name : addList) {
-            if (map.containsKey(name.charAt(0))) {
-                map.get(name.charAt(0)).insertStringNode(map.get(name.charAt(0)).root, name, true);
-            } else {
-                GeneralTree generalTree = new GeneralTree(name.charAt(0));
-                generalTree.insertStringNode(generalTree.root, name, true);
-                map.put(name.charAt(0), generalTree);
-            }
-        }
-
-        /**
-        for (Map.Entry<Character, GeneralTree> entry : map.entrySet()) {
-                System.out.println(entry.getKey() + " --> ");
-                entry.getValue().print();
-        }*/
         int[] result = new int[count];
         count = 0;
 
         for (String findName : findList) {
-            result[count++] = findChildren(findName);
+            result[count] = 0;
+            if (hashMap.containsKey(findName.charAt(0))) {
+                for (String addName : hashMap.get(findName.charAt(0))) {
+                    if (findName.length() <= addName.length()) {
+                        if (addName.substring(0, findName.length()).equals(findName)) {
+                            result[count]++;
+                        }
+                    }
+                }
+            }
+            count++;
         }
-
         return result;
     }
 
-    private int findChildren(String name) {
-        if (map.containsKey(name.charAt(0))) {
-            return map.get(name.charAt(0)).numberOfChildren(name);
-        } else {
-            return 0;
-        }
 
-    }
 }

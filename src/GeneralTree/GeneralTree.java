@@ -33,16 +33,21 @@ public class GeneralTree<T> {
                 if (childName.substring(0, newNodeName.length()).equals(newNodeName)) {
                     if (newNode.name == null) {
                         newNode.name = name;
-                        root.children.add(newNode);
+                        node.children.add(newNode);
                     }
                     newNode.children.add(child);
-                    root.children.remove(child);
+                    node.children.remove(child);
                 }
-            } else {
+            } else if (newNodeName.length() > childName.length()) {
                 // New node name is greater than child name. Just append as another child.
                 if (newNodeName.substring(0, childName.length()).equals(childName)) {
                     insertStringNode(child, name, add);
                     newNode.name = "dummy";
+                }
+            } else {
+                if (newNodeName.equals(childName)) {
+                    newNode.name = name;
+                    child.children.add(newNode);
                 }
             }
         }
@@ -63,7 +68,7 @@ public class GeneralTree<T> {
 
         while (childNotFound) {
             node = queue.poll();
-            if (node.name.equals(name)) {
+            if (node.name.equals(name) && !node.add) {
                 queue.clear();
                 childNotFound = false;
             } else {
