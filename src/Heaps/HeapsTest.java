@@ -3,8 +3,8 @@ package Heaps;
 public class HeapsTest {
     public static void main (String []args) {
         //doMaxHeap();
-        //doMinHeap();
-        doHeapSort();
+        doMinHeap();
+        //doHeapSort();
     }
 
     private static void doMaxHeap() {
@@ -13,7 +13,7 @@ public class HeapsTest {
     }
 
     private static void doMinHeap() {
-        minHeapImplementationTest();
+        //minHeapImplementationTest();
         minHeapTest();
     }
 

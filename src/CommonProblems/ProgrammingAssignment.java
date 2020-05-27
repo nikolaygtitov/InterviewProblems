@@ -11,7 +11,8 @@ public class ProgrammingAssignment {
         // doLongestPalindromicSubstring();
         // doSpiralIn2DArray();
         // doBalancedBrackets();
-        doPartialNames();
+        // doPartialNames();
+        doFindRunningMedian();
     }
 
     private static void doTuples() {
@@ -66,5 +67,10 @@ public class ProgrammingAssignment {
         PartialNames partialNames = new PartialNames();
         partialNames.useTrieFindPartialNames();
         // partialNames.useHashMapFindPartialNames();
+    }
+
+    private static void doFindRunningMedian() {
+        FindRunningMedian findRunningMedian = new FindRunningMedian();
+        findRunningMedian.findRunningMedian();
     }
 }
